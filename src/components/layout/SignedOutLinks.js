@@ -1,18 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const SignedInLinks = () => {
   return (
     <ul className='navbar-nav ml-auto'>
       <li className='nav-item'>
-        <Link to='/signup' className='nav-link'>
+        <NavLink to='/signup' className='nav-link'>
           Signup
-        </Link>
+        </NavLink>
       </li>
       <li className='nav-item'>
-        <Link to='/signin' className='nav-link'>
+        <NavLink to='/signin' className='nav-link'>
           Login
-        </Link>
+        </NavLink>
       </li>
     </ul>
   );
