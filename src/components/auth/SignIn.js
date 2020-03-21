@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { signIn } from '../../store/actions/authAction';
 
 export class SignUp extends Component {
   state = {
@@ -15,10 +18,11 @@ export class SignUp extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.signIn(this.state);
   };
 
   render() {
+    const { authError } = this.props;
     return (
       <div className='container my-5'>
         <form onSubmit={this.handleSubmit}>
@@ -47,6 +51,9 @@ export class SignUp extends Component {
               Login
             </button>
           </div>
+          <div className='text-center text-danger'>
+            {authError ? <p>{authError}</p> : null}
+          </div>
         </form>
         <p>
           Don't have an account? <Link to='/signup'>Sign Up</Link>
@@ -56,4 +63,16 @@ export class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => {
+  return {
+    signIn: credentials => dispatch(signIn(credentials))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    authError: state.auth.authError
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
