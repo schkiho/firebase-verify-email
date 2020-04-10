@@ -4,8 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 export class Dashboard extends Component {
   render() {
-    const { auth } = this.props;
-    if (!auth.uid) return <Redirect to='/signin' />;
+    //const { auth } = this.props;
 
     return (
       <div className='text-center mt-4'>
@@ -21,9 +20,9 @@ export class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
   };
 };
 

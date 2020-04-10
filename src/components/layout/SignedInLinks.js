@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { signOut } from '../../store/actions/authAction';
@@ -8,9 +8,9 @@ const SignedInLinks = ({ signOut }) => {
   return (
     <ul className='navbar-nav ml-auto'>
       <li className='nav-item'>
-        <NavLink to='/' className='nav-link'>
+        <Link to='/' className='nav-link'>
           Dashboard
-        </NavLink>
+        </Link>
       </li>
       <li className='nav-item'>
         <Link to='/' className='nav-link' onClick={signOut}>
@@ -21,9 +21,9 @@ const SignedInLinks = ({ signOut }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    signOut: () => dispatch(signOut())
+    signOut: () => dispatch(signOut()),
   };
 };
 

@@ -4,27 +4,30 @@ import { connect } from 'react-redux';
 
 import { signIn } from '../../store/actions/authAction';
 
-export class SignUp extends Component {
+export class SignIn extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.signIn(this.state);
   };
 
   render() {
-    const { authError, auth } = this.props;
-    if (auth.uid) return <Redirect to='/' />;
-
+    const { auth, authError } = this.props;
+    if (auth.uid && !auth.emailVerified) {
+      return <Redirect to='/verify-email' />;
+    } else if (auth.uid && auth.emailVerified) {
+      return <Redirect to='/dashboard' />;
+    }
     return (
       <div className='container my-5'>
         <form onSubmit={this.handleSubmit}>
@@ -65,17 +68,18 @@ export class SignUp extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
+  console.log(state);
   return {
     authError: state.auth.authError,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: credentials => dispatch(signIn(credentials))
+    signIn: (credentials) => dispatch(signIn(credentials)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

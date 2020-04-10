@@ -9,24 +9,23 @@ export class SignUp extends Component {
     email: '',
     password: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.signUp(this.state);
   };
 
   render() {
     const { auth, authError } = this.props;
-    if (auth.uid) return <Redirect to='/' />;
-
+    if (auth.uid) return <Redirect to='/signin' />;
     return (
       <div className='container  my-5'>
         <form onSubmit={this.handleSubmit}>
@@ -71,7 +70,7 @@ export class SignUp extends Component {
           <button type='submit' className='btn btn-primary btn-block mb-3'>
             Sign Up
           </button>
-          <div className='red-text center'>
+          <div className='text-center text-danger'>
             {authError ? <p>{authError}</p> : null}
           </div>
         </form>
@@ -83,16 +82,16 @@ export class SignUp extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    authError: state.auth.authError
+    authError: state.auth.authError,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    signUp: newUser => dispatch(signUp(newUser))
+    signUp: (newUser) => dispatch(signUp(newUser)),
   };
 };
 
