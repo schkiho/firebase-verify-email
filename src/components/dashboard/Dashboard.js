@@ -4,8 +4,8 @@ import { Redirect } from 'react-router-dom';
 
 export class Dashboard extends Component {
   render() {
-    //const { auth } = this.props;
-
+    const { auth } = this.props;
+    if (auth.uid && !auth.emailVerified) return <Redirect to='verify-email' />;
     return (
       <div className='text-center mt-4'>
         <h1 className='text-primary'>

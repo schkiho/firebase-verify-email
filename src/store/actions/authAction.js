@@ -46,6 +46,7 @@ export const signUp = (newUser) => async (
         firstName: newUser.firstName,
         lastName: newUser.lastName,
         initials: newUser.firstName[0] + newUser.lastName[0],
+        isAdmin: false,
       });
     dispatch({ type: 'SIGNUP_SUCCESS' });
   } catch (err) {
@@ -65,5 +66,19 @@ export const verifyEmail = () => async (
     dispatch({ type: 'VERIFY_SUCCESS' });
   } catch (err) {
     dispatch({ type: 'VERIFY_ERROR', err });
+  }
+};
+
+export const recoverPassword = (credential) => async (
+  dispatch,
+  getState,
+  { getFirebase }
+) => {
+  const firebase = getFirebase();
+  try {
+    await firebase.auth().sendPasswordResetEmail(credential.email);
+    dispatch({ type: 'RECOVERY_SUCCESS' });
+  } catch (err) {
+    dispatch({ type: 'RECOVERY_ERROR', err });
   }
 };

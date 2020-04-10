@@ -9,7 +9,7 @@ const VerifyEmail = ({ auth, sendVerification }) => {
   }
   return (
     <div className='container text-center mt-5'>
-      <div className='card'>
+      <div className='card bg-dark text-light'>
         <div className='card-body'>
           <h3 className='card-title mb-4'>Please Verify Your Email</h3>
           <p className='card-text'>
@@ -20,19 +20,13 @@ const VerifyEmail = ({ auth, sendVerification }) => {
             If the link in your email is expired click the Refresh button below
             to refresh the link.
           </p>
+
           <button
             className='btn btn-lg btn-primary'
             onClick={() => sendVerification()}
           >
             Refresh
           </button>
-          <Link
-            to='/signin'
-            className='btn btn-lg btn-primary ml-2'
-            disabled={!auth.emailVerified}
-          >
-            Login
-          </Link>
         </div>
       </div>
     </div>

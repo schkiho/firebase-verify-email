@@ -43,6 +43,18 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.err.message,
       };
+    case 'RECOVERY_SUCCESS':
+      console.log('password recovery success');
+      return {
+        ...state,
+        authError: null,
+      };
+    case 'RECOVERY_ERROR':
+      console.log('password recovery failed');
+      return {
+        ...state,
+        authError: action.err.message,
+      };
     default:
       return state;
   }
