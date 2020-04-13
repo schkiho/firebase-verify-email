@@ -17,9 +17,12 @@ export class PasswordRecovery extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.recoverPassword(this.state);
+    this.props.history.push('/signin');
   };
 
   render() {
+    const { authError } = this.props;
+
     return (
       <div className='container text-center mt-5'>
         <div className='card bg-dark text-light'>
@@ -38,10 +41,13 @@ export class PasswordRecovery extends Component {
               />
 
               <button type='submit' className='btn btn-lg btn-primary'>
-                Recover email
+                Recover Password
               </button>
             </form>
           </div>
+        </div>
+        <div className='text-center text-danger'>
+          {authError ? <p>{authError}</p> : null}
         </div>
       </div>
     );

@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { verifyEmail } from '../../store/actions/authAction';
 
-const VerifyEmail = ({ auth, sendVerification }) => {
+const VerifyEmail = ({ auth, authError, sendVerification }) => {
   if (auth.uid && auth.emailVerified) {
     return <Redirect to='/dashboard' />;
   }
+
   return (
     <div className='container text-center mt-5'>
       <div className='card bg-dark text-light'>
@@ -22,18 +23,22 @@ const VerifyEmail = ({ auth, sendVerification }) => {
           </p>
 
           <button
-            className='btn btn-lg btn-primary'
+            className='btn btn-lg btn-primary mr-2'
             onClick={() => sendVerification()}
           >
             Refresh
           </button>
         </div>
       </div>
+      <div className='text-center text-danger'>
+        {authError ? <p>{authError}</p> : null}
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     auth: state.firebase.auth,
     authError: state.auth.authError,
