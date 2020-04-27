@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { recoverPassword } from '../../store/actions/authAction';
-import { Redirect } from 'react-router-dom';
 
 export class PasswordRecovery extends Component {
   state = {

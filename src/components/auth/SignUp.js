@@ -8,6 +8,7 @@ export class SignUp extends Component {
   state = {
     email: '',
     password: '',
+    password2: '',
     firstName: '',
     lastName: '',
   };
@@ -20,8 +21,13 @@ export class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.signUp(this.state);
-    this.props.history.push('/signin');
+    const { password, password2 } = this.state;
+    if (password !== password2) {
+      alert('Both passwords must be the same please try again.');
+    } else {
+      this.props.signUp(this.state);
+      this.props.history.push('/signin');
+    }
   };
 
   render() {
@@ -64,6 +70,15 @@ export class SignUp extends Component {
             <input
               type='password'
               id='password'
+              className='form-control'
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='password2'>Confirm Password</label>
+            <input
+              type='password'
+              id='password2'
               className='form-control'
               onChange={this.handleChange}
             />
