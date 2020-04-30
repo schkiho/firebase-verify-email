@@ -15,7 +15,8 @@ const VerifyEmail = ({ auth, authError, sendVerification }) => {
           <h3 className='card-title mb-4'>Please Verify Your Email</h3>
           <p className='card-text'>
             We send a link to {auth.email}, please check your inbox and click
-            the link to verify your email address.
+            the link to verify your email address and refresh the page to enter
+            the dashboard.
           </p>
           <p>
             If the link in your email is expired click the Refresh button below
@@ -23,10 +24,10 @@ const VerifyEmail = ({ auth, authError, sendVerification }) => {
           </p>
 
           <button
-            className='btn btn-lg btn-primary mr-2'
+            className='btn btn-lg btn-primary m-4'
             onClick={() => sendVerification()}
           >
-            Refresh
+            Refresh the Link
           </button>
         </div>
       </div>

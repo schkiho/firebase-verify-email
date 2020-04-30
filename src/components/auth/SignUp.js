@@ -26,13 +26,12 @@ export class SignUp extends Component {
       alert('Both passwords must be the same please try again.');
     } else {
       this.props.signUp(this.state);
-      this.props.history.push('/signin');
     }
   };
 
   render() {
     const { auth, authError } = this.props;
-    if (auth.uid) return <Redirect to='/signin' />;
+    if (auth.uid) return <Redirect to='/verify-email' />;
     return (
       <div className='container  my-5'>
         <form onSubmit={this.handleSubmit}>
