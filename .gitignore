@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+trash.txt
+fbConfig.js
 
 # testing
 /coverage
