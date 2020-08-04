@@ -1,16 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers";
 
 import { registerSchema } from "../validationSchemas/authSchemas";
+import { registerUser } from "../auth/authFunctions";
 
-const Register = () => {
+const Register = ({ history }) => {
   const { register, handleSubmit, errors } = useForm({
     resolver: joiResolver(registerSchema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    if (data.password === data.password2) {
+      registerUser(data);
+    }
+    history.push("/login");
+  };
   return (
     <div className="container auth-container my-4">
       <h2 className="text-center text-success">
@@ -62,6 +69,7 @@ const Register = () => {
             type="password"
             className="form-control"
             name="password2"
+            ref={register}
             placeholder="Confirm password"
           />
           <p className="text-center text-danger">{errors.password2?.message}</p>
@@ -80,4 +88,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default withRouter(Register);

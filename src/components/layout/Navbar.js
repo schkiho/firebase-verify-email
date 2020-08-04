@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../../img/logoBianco.png";
+import { logOutUser } from "../auth/authFunctions";
 
 const Navbar = () => {
   return (
@@ -30,6 +31,11 @@ const Navbar = () => {
             <NavLink to="/login" className="nav-link">
               Login
             </NavLink>
+          </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link" onClick={logOutUser}>
+              Logout
+            </Link>
           </li>
         </ul>
       </div>

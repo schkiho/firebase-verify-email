@@ -1,16 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers";
 
 import { loginSchema } from "../validationSchemas/authSchemas";
+import { loginUser } from "../auth/authFunctions";
 
-const Login = () => {
+const Login = ({ history }) => {
   const { register, handleSubmit, errors } = useForm({
     resolver: joiResolver(loginSchema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    loginUser(data);
+    history.push("/dashboard");
+  };
 
   return (
     <div className="container auth-container my-4">
@@ -52,4 +57,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

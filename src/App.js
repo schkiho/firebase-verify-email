@@ -7,6 +7,7 @@ import Footer from "./components/layout/Footer";
 import Home from "./components/Home";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Dashboard from "./components/dashboard/Dashboard";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
         <Footer />
       </div>
