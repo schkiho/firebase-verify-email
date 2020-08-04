@@ -1,31 +1,45 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers";
+
+import { loginSchema } from "../validationSchemas/authSchemas";
 
 const Login = () => {
+  const { register, handleSubmit, errors } = useForm({
+    resolver: joiResolver(loginSchema),
+  });
+
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div className="container auth-container my-4">
       <h2 className="text-center text-success">
-        <i class="fa fa-user" /> Login
+        <i className="fa fa-user" /> Login
       </h2>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <input
             type="email"
             className="form-control"
-            id="email"
+            ref={register}
+            name="email"
             placeholder="Email address"
           />
+          <p className="text-center text-danger">{errors.email?.message}</p>
         </div>
         <div className="form-group">
           <input
             type="password"
             className="form-control"
-            id="password"
+            ref={register}
+            name="password"
             placeholder="Password"
           />
+          <p className="text-center text-danger">{errors.password?.message}</p>
         </div>
         <div className="fourm-group">
-          <button type="submitt" className="btn btn-success btn-block">
+          <button type="submit" className="btn btn-success btn-block">
             Login
           </button>
         </div>

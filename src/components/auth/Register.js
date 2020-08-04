@@ -1,52 +1,70 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers";
+
+import { registerSchema } from "../validationSchemas/authSchemas";
 
 const Register = () => {
+  const { register, handleSubmit, errors } = useForm({
+    resolver: joiResolver(registerSchema),
+  });
+
+  const onSubmit = (data) => console.log(data);
   return (
     <div className="container auth-container my-4">
       <h2 className="text-center text-success">
-        <i class="fa fa-user-plus" /> Register
+        <i className="fa fa-user-plus" /> Register
       </h2>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <input
             type="text"
             className="form-control"
-            id="firstName"
+            ref={register}
+            name="Firstname"
             placeholder="Firstname"
           />
+          <p className="text-center text-danger">{errors.Firstname?.message}</p>
         </div>
         <div className="form-group">
           <input
             type="text"
             className="form-control"
-            id="lastName"
+            ref={register}
+            name="Lastname"
             placeholder="Lastname"
           />
+          <p className="text-center text-danger">{errors.Lastname?.message}</p>
         </div>
         <div className="form-group">
           <input
             type="email"
             className="form-control"
-            id="email"
+            ref={register}
+            name="email"
             placeholder="Email address"
           />
+          <p className="text-center text-danger">{errors.email?.message}</p>
         </div>
         <div className="form-group">
           <input
             type="password"
             className="form-control"
-            id="password"
+            ref={register}
+            name="password"
             placeholder="Password"
           />
+          <p className="text-center text-danger">{errors.password?.message}</p>
         </div>
         <div className="form-group">
           <input
             type="password"
             className="form-control"
-            id="password2"
+            name="password2"
             placeholder="Confirm password"
           />
+          <p className="text-center text-danger">{errors.password2?.message}</p>
         </div>
         <div className="fourm-group">
           <button type="submitt" className="btn btn-success btn-block">
