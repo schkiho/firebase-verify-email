@@ -1,13 +1,13 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Logo from "../../img/logoBianco.png";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a href="/" className="navbar-brand">
+      <Link to="/" className="navbar-brand">
         <img src={Logo} alt="logo" width="80px" height="40px" />
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
