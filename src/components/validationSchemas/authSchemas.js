@@ -11,8 +11,8 @@ export const loginSchema = Joi.object({
 });
 
 export const registerSchema = Joi.object({
-  Firstname: Joi.string().min(5).max(50).lowercase().required(),
-  Lastname: Joi.string().min(5).max(50).lowercase().required(),
+  Firstname: Joi.string().min(2).max(50).lowercase().required(),
+  Lastname: Joi.string().min(2).max(50).lowercase().required(),
   email: Joi.string()
     .min(5)
     .max(255)

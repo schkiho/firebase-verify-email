@@ -9,16 +9,19 @@ export const registerUser = async (data) => {
 
     const user = auth.currentUser;
     await user.sendEmailVerification();
-
-    await db.collection("users").doc(user.uid).set({
-      firstName: data.Firstname,
-      lastName: data.Lastname,
-      email: data.email,
-      createdAt: new Date(),
-    });
   } catch (err) {
     console.log("error", err.message);
   }
+};
+
+export const createUser = async (data) => {
+  const user = auth.currentUser;
+  await db.collection("users").doc(user.uid).set({
+    firstName: data.Firstname,
+    lastName: data.Lastname,
+    email: data.email,
+    createdAt: new Date(),
+  });
 };
 
 export const loginUser = async (data) => {
