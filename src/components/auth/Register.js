@@ -14,6 +14,9 @@ const Register = ({ history }) => {
 
   const onSubmit = (data) => {
     registerUser(data);
+    alert(
+      "We send you a email to verify your email address please check your inbox!"
+    );
     history.push("/login");
   };
 

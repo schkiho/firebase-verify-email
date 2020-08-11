@@ -32,3 +32,12 @@ export const loginUser = async (data) => {
 export const logOutUser = () => {
   auth.signOut();
 };
+
+export const refreshVerificationLink = async () => {
+  try {
+    const user = auth.currentUser;
+    await user.sendEmailVerification();
+  } catch (err) {
+    console.log("error", err.message);
+  }
+};

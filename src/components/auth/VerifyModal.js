@@ -5,9 +5,11 @@ const VerifyModal = ({ handleClose, show, children }) => {
 
   return (
     <div className={showHideClassName}>
-      <section className="modal-main">
+      <section className="modal-main py-2 rounded">
         {children}
-        <button onClick={handleClose}>close</button>
+        <button className="modal-button rounded" onClick={handleClose}>
+          Close
+        </button>
       </section>
     </div>
   );

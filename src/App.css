@@ -13,12 +13,27 @@
 
 .modal-main {
   position: fixed;
-  background: white;
-  width: 80%;
+  background: black;
+  border: 1px solid #ffc107ee;
+  text-align: center;
+  color: #ffc107ee;
+  width: 60%;
   height: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.modal-button {
+  border: 1px solid #ffc107ee;
+  background: black;
+  color: #ffc107ee;
+}
+
+.hr {
+  background-color: #ffc107ee;
+  width: 70%;
+  text-align: center;
 }
 
 .display-block {

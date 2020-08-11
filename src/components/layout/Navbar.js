@@ -1,9 +1,13 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../img/logoBianco.png";
-import { logOutUser } from "../auth/authFunctions";
+import { AuthContext } from "../auth/Auth";
+import LoggedInLinks from "./LoggedInLinks";
+import LoggedOutLinks from "./LoggedOutLinks";
 
 const Navbar = () => {
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link to="/" className="navbar-brand">
@@ -22,21 +26,7 @@ const Navbar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <NavLink to="/register" className="nav-link">
-              Register
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/login" className="nav-link">
-              Login
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <Link to="/" className="nav-link" onClick={logOutUser}>
-              Logout
-            </Link>
-          </li>
+          {!currentUser ? <LoggedOutLinks /> : <LoggedInLinks />}
         </ul>
       </div>
     </nav>
